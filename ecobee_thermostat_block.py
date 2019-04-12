@@ -21,7 +21,7 @@ class EcobeeThermostat(Retry, EnrichSignals, Persistence, Block):
         title='Initial Refresh Token', default='[[ECOBEE_REFRESH_TOKEN]]')
     desired_temp = FloatProperty(
         title='Desired Temperature', default='{{ $temp }}')
-    version = VersionProperty('0.0.1')
+    version = VersionProperty('0.0.2')
 
     def __init__(self):
         super().__init__()
@@ -98,6 +98,7 @@ class EcobeeThermostat(Retry, EnrichSignals, Persistence, Block):
                     'selectionType': 'registered',
                     'selectionMatch': '',
                     'includeRuntime': True,
+                    'includeSettings': True,
                 }
             })
         return therms.json()
